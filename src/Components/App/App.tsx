@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import ResumeButton from '../ResumeButton/ResumeButton';
-import LinkedInButton from '../LinkedInButton/LinkedInButton';
-import GitHubButton from '../GitHubButton/GitHubButton';
+import Button from '../Button/Button';
 
 function App() {
   const [showGif, setShowGif] = useState(true);
@@ -39,9 +37,9 @@ function App() {
           <div>
             <h1>Welcome to Eli Fuchsman's Portfolio</h1>
             <div style={buttonContainerStyle}>
-              <LinkedInButton />
-              <GitHubButton />
-              <ResumeButton />
+              <Button variation="linkedin" buttonText="Visit LinkedIn" link="https://www.linkedin.com/in/elifuchsman/" />
+              <Button variation="github" buttonText="Visit GitHub" link="https://www.github.com/efuchsman/" />
+              <Button variation="resume" buttonText="Download Resume" />
             </div>
             <p></p>
           </div>

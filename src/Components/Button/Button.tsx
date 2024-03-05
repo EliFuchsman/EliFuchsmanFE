@@ -1,0 +1,46 @@
+import "./Button.css"
+
+type Props = {
+  variation: string;
+  link?: string;
+  buttonText: string;
+}
+
+const Button = (props: Props) => {
+  const { variation, link, buttonText } = props;
+
+  const handleClick = async () => {
+    if (link && (variation === "github" || variation === "linkedin")) {
+      window.open(link, '_blank');
+    }
+
+    if (variation === "resume") {
+      try {
+        const response = await fetch('http://localhost:8000/resume');
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch resume');
+        }
+
+        const blob = await response.blob();
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = 'Eli Fuchsman Resume.pdf';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      } catch (error) {
+        console.error('Error downloading resume:', error);
+      }
+    }
+  };
+
+  return (
+    <button className="button" onClick={handleClick}>
+      {buttonText}
+    </button>
+  );
+};
+
+export default Button;
