@@ -31,6 +31,10 @@
   color: white;
 }
 
+.App-header.fade-in {
+  opacity: 1;
+}
+
 .App-link {
   color: #61dafb;
 }
