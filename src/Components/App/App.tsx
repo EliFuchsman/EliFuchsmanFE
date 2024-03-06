@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Button from '../Button/Button';
 import RedLine from '../Redline/Redline';
+import Link from '../Link/Link';
+import RedPage from '../RedPage/RedPage';
+import { getEducation, getExperience, getProjects } from '../../utilities/utils';
 
 function App() {
   const [showGif, setShowGif] = useState(true);
   const [gifOpacity, setGifOpacity] = useState(1);
   const [showWelcomeText, setShowWelcomeText] = useState(false);
   const [textOpacity, setTextOpacity] = useState(0);
+  const [apiType, setApiType] = useState<'info' | 'summary' | null>(null);
+
 
   useEffect(() => {
     const gifTimeoutId = setTimeout(() => {
@@ -47,6 +52,17 @@ function App() {
     color: '#fff',
   };
 
+  const linkContainerStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '30px',
+    width: '60%',
+  }
+
+  const handleReturn = () => {
+    setApiType(null);
+  };
+
   return (
     <div className="App" style={headerStyle}>
       <header className="App-header">
@@ -60,7 +76,16 @@ function App() {
         )}
         {showWelcomeText && (
           <div>
+            <div style={linkContainerStyle}>
+              <Link linkText="Info" handleClick={() => setApiType('info')} />
+              <Link linkText="Summary" handleClick={() => setApiType('summary')} />
+              <Link linkText="Education" handleClick={getEducation} />
+              <Link linkText="Experience" handleClick={getExperience} />
+              <Link linkText="Projects" handleClick={getProjects} />
+            </div>
             <RedLine />
+            {apiType && <RedPage apiType={apiType} onReturn={handleReturn} />}
+
             <h1 style={welcomeTextStyle}>Welcome to Eli Fuchsman's Portfolio</h1>
             <div style={buttonContainerStyle}>
               <Button variation="linkedin" buttonText="Visit LinkedIn" link="https://www.linkedin.com/in/elifuchsman/" />

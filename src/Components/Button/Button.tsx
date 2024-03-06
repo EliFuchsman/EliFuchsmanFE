@@ -1,6 +1,6 @@
 import "./Button.css"
 
-type Props = {
+interface Props {
   variation: string;
   link?: string;
   buttonText: string;

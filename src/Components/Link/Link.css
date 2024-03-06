@@ -1,0 +1,21 @@
+/* Link.css */
+
+.link-container {
+  display: inline-block;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  user-select: none;
+  background-color: none;
+  border-radius: 5px;
+}
+
+.link-text {
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.link-text:hover {
+  text-decoration-color: red;
+}
