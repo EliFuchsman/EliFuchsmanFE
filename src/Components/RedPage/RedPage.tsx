@@ -1,7 +1,9 @@
+// RedPage.tsx
 import "./RedPage.css";
-import { getInfo, getSummary } from '../../utilities/utils';
 import React, { useEffect, useState } from 'react';
-
+import { getInfo, getSummary } from '../../utilities/utils';
+import RedPageSummary from './RedPageSummary';
+import RedPageInfo from './RedPageInfo'
 
 interface RedPageProps {
   apiType: 'summary' | 'info';
@@ -15,7 +17,6 @@ const RedPage: React.FC<RedPageProps> = ({ apiType, onReturn }) => {
     const fetchData = async () => {
       try {
         const data = apiType === 'summary' ? await getSummary() : await getInfo();
-
         setApiData(data);
       } catch (error: any) {
         console.error('Error fetching data:', error.message);
@@ -25,17 +26,26 @@ const RedPage: React.FC<RedPageProps> = ({ apiType, onReturn }) => {
     fetchData();
   }, [apiType]);
 
+  const renderContent = () => {
+    if (!apiData) {
+      return <p>Loading data...</p>;
+    }
+
+    switch (apiType) {
+      case 'summary':
+        return <RedPageSummary apiData={apiData} />;
+      case 'info':
+        return <RedPageInfo apiData={apiData} />;
+
+      default:
+        return <p>No content available for this API type.</p>;
+    }
+  };
+
   return (
     <div className="red-page">
       <button onClick={onReturn}>Return</button>
-      {apiData ? (
-        <div style={{ color: 'white' }}>
-          {/* Output the API data here */}
-          <pre>{JSON.stringify(apiData, null, 2)}</pre>
-        </div>
-      ) : (
-        <p>Loading data...</p>
-      )}
+      {renderContent()}
     </div>
   );
 };
