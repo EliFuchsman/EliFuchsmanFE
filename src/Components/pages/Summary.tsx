@@ -1,11 +1,11 @@
-// RedSummaryPage.tsx
+// Summary.tsx
 import React, { useEffect, useState } from 'react';
 
-interface RedPageSummaryProps {
+interface SummaryProps {
   apiData: { summary: string };
 }
 
-const RedPageSummary: React.FC<RedPageSummaryProps> = ({ apiData }) => {
+const Summary: React.FC<SummaryProps> = ({ apiData }) => {
   const [paragraphs, setParagraphs] = useState<string[]>([]);
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const RedPageSummary: React.FC<RedPageSummaryProps> = ({ apiData }) => {
   );
 };
 
-export default RedPageSummary;
+export default Summary;

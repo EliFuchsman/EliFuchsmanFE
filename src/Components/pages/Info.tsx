@@ -1,6 +1,6 @@
-// RedPageInfo.tsx
+// Info.tsx
 
-interface RedPageInfoProps {
+interface InfoProps {
   apiData: {
     full_name: string;
     first_name: string;
@@ -14,7 +14,7 @@ interface RedPageInfoProps {
   };
 }
 
-const RedPageInfo: React.FC<RedPageInfoProps> = ({ apiData }) => {
+const Info: React.FC<InfoProps> = ({ apiData }) => {
   const { first_name, last_name, city, state, email, phone } = apiData;
 
   return (
@@ -28,4 +28,4 @@ const RedPageInfo: React.FC<RedPageInfoProps> = ({ apiData }) => {
 };
 
 
-export default RedPageInfo
+export default Info

@@ -1,0 +1,23 @@
+.card {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-wrapper {
+  width: 100%;
+  display: block;
+}
+
+.card-item {
+  flex: 0 0 auto;
+  height: auto;
+  border: 1px solid white;
+  padding: 20px;
+  margin: 20px;
+}
+
+a {
+  color: white;
+}

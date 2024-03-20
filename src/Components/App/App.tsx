@@ -3,15 +3,15 @@ import './App.css';
 import Button from '../Button/Button';
 import RedLine from '../Redline/Redline';
 import Link from '../Link/Link';
-import RedPage from '../RedPage/RedPage';
-import { getEducation, getExperience, getProjects } from '../../utilities/utils';
+import Page from '../pages/Page';
+import { getExperience } from '../../utilities/utils';
 
 function App() {
   const [showGif, setShowGif] = useState(true);
   const [gifOpacity, setGifOpacity] = useState(1);
   const [showWelcomeText, setShowWelcomeText] = useState(false);
   const [textOpacity, setTextOpacity] = useState(0);
-  const [apiType, setApiType] = useState<'info' | 'summary' | null>(null);
+  const [apiType, setApiType] = useState<'info' | 'summary' | 'education' | 'projects' | null>(null);
 
 
   useEffect(() => {
@@ -79,12 +79,12 @@ function App() {
             <div style={linkContainerStyle}>
               <Link linkText="Info" handleClick={() => setApiType('info')} />
               <Link linkText="Summary" handleClick={() => setApiType('summary')} />
-              <Link linkText="Education" handleClick={getEducation} />
+              <Link linkText="Education" handleClick={() => setApiType('education')} />
               <Link linkText="Experience" handleClick={getExperience} />
-              <Link linkText="Projects" handleClick={getProjects} />
+              <Link linkText="Projects" handleClick={() => setApiType('projects')} />
             </div>
             <RedLine />
-            {apiType && <RedPage apiType={apiType} onReturn={handleReturn} />}
+            {apiType && <Page apiType={apiType} onReturn={handleReturn} />}
 
             <h1 style={welcomeTextStyle}>Welcome to Eli Fuchsman's Portfolio</h1>
             <div style={buttonContainerStyle}>
