@@ -15,7 +15,7 @@ const Summary: React.FC<SummaryProps> = ({ apiData }) => {
   }, [apiData]);
 
   return (
-    <div>
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
       {paragraphs.length > 0 ? (
         <div>
           {paragraphs.map((paragraph: string, index: number) => (

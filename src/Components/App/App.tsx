@@ -11,7 +11,7 @@ function App() {
   const [gifOpacity, setGifOpacity] = useState(1);
   const [showWelcomeText, setShowWelcomeText] = useState(false);
   const [textOpacity, setTextOpacity] = useState(0);
-  const [apiType, setApiType] = useState<'info' | 'summary' | 'education' | 'projects' | null>(null);
+  const [apiType, setApiType] = useState<'info' | 'summary' | 'education' | 'projects' | 'experience' | null>(null);
 
 
   useEffect(() => {
@@ -80,7 +80,7 @@ function App() {
               <Link linkText="Info" handleClick={() => setApiType('info')} />
               <Link linkText="Summary" handleClick={() => setApiType('summary')} />
               <Link linkText="Education" handleClick={() => setApiType('education')} />
-              <Link linkText="Experience" handleClick={getExperience} />
+              <Link linkText="Experience" handleClick={() => setApiType('experience')} />
               <Link linkText="Projects" handleClick={() => setApiType('projects')} />
             </div>
             <RedLine />

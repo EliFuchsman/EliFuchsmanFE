@@ -1,14 +1,15 @@
 // Page.tsx
 import "./Page.css";
 import React, { useEffect, useState } from 'react';
-import { getInfo, getSummary, getEducation, getProjects } from '../../utilities/utils';
+import { getInfo, getSummary, getEducation, getProjects, getExperience } from '../../utilities/utils';
 import Summary from './Summary';
 import Info from './Info'
 import Education from './Education';
 import Project from './Project'
+import Experience from './Experience'
 
 interface PageProps {
-  apiType: 'summary' | 'info' | 'education' | 'projects';
+  apiType: 'summary' | 'info' | 'education' | 'projects' | 'experience';
   onReturn?: () => void;
 }
 
@@ -31,6 +32,9 @@ const Page: React.FC<PageProps> = ({ apiType, onReturn }) => {
             break;
           case 'projects':
             data = await getProjects();
+            break;
+          case 'experience':
+            data = await getExperience();
             break;
           default:
             throw new Error('Invalid API type');
@@ -58,6 +62,8 @@ const Page: React.FC<PageProps> = ({ apiType, onReturn }) => {
         return <Education apiData={apiData} />;
       case 'projects':
         return <Project apiData={apiData} />;
+      case 'experience':
+        return <Experience apiData={apiData} />;
       default:
         return <p>No content available for this API type.</p>;
     }
