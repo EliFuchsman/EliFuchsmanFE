@@ -1,5 +1,4 @@
 import React from 'react';
-import { StringLiteral } from 'typescript';
 import Card from './Card';
 
 interface ExperienceData {
@@ -44,7 +43,12 @@ const Experience: React.FC<ExperienceProps> = ({ apiData }) => {
             {experience.address !== 'N/A' ? (<p>{experience.address}</p>
             ) : null}
             <p>{experience.start} to {experience.end}</p>
-            <p>{experience.description}</p>
+            <div className="details">
+              {experience.description.split('\n').map((sentence: string, idx: number) => (
+                <p key={idx}>{sentence}</p>
+              ))}
+            </div>
+
           </div>
         )}
       />
