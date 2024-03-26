@@ -14,9 +14,9 @@ const Button = (props: Props) => {
       window.open(link, '_blank');
     }
 
-    if (variation === "resume") {
+    if (link && variation === "resume") {
       try {
-        const response = await fetch('http://localhost:8000/resume');
+        const response = await fetch(link);
 
         if (!response.ok) {
           throw new Error('Failed to fetch resume');

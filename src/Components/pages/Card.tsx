@@ -1,6 +1,4 @@
 // Card.tsx
-
-import React, { useState } from 'react';
 import './Card.css';
 
 interface CardProps<T> {

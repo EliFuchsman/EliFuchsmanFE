@@ -5,6 +5,7 @@ import RedLine from '../Redline/Redline';
 import Link from '../Link/Link';
 import Page from '../pages/Page';
 
+const rootUrl = process.env.REACT_APP_BE_APP_ROOT;
 function App() {
   const [showGif, setShowGif] = useState(true);
   const [gifOpacity, setGifOpacity] = useState(1);
@@ -83,13 +84,13 @@ function App() {
               <Link linkText="Projects" handleClick={() => setApiType('projects')} />
             </div>
             <RedLine />
-            {apiType && <Page apiType={apiType} onReturn={handleReturn} />}
+            {apiType && rootUrl && <Page apiType={apiType} onReturn={handleReturn} urlPath={rootUrl} />}
 
             <h1 style={welcomeTextStyle}>Welcome to Eli Fuchsman's Portfolio</h1>
             <div style={buttonContainerStyle}>
               <Button variation="linkedin" buttonText="Visit LinkedIn" link="https://www.linkedin.com/in/elifuchsman/" />
               <Button variation="github" buttonText="Visit GitHub" link="https://www.github.com/efuchsman/" />
-              <Button variation="resume" buttonText="Download Resume" />
+              <Button variation="resume" buttonText="Download Resume" link={`${rootUrl}/resume`} />
             </div>
             <p></p>
           </div>

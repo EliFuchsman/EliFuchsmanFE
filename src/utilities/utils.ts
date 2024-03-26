@@ -1,7 +1,5 @@
-const API_ROUTE = process.env.BE_APP_ROOT;
-
-export const getInfo = async () => {
-  let url: string = `${API_ROUTE}/info`;
+export const getInfo = async (urlPath: string) => {
+  let url: string = urlPath;
 
   try {
     const response = await fetch(url)
@@ -20,8 +18,28 @@ export const getInfo = async () => {
   }
 };
 
-export const getSummary = async () => {
-  let url: string = `${API_ROUTE}/summary`;
+export const getSummary = async (urlPath: string) => {
+  let url: string = urlPath;
+  console.log('url', url)
+  try {
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log('Received data:', data);
+    return data;
+  } catch (error: any) {
+
+    console.error('Error:', error.message);
+    throw error;
+  }
+};
+
+export const getEducation = async (urlPath: string) => {
+  let url: string = urlPath;
 
   try {
     const response = await fetch(url)
@@ -40,8 +58,8 @@ export const getSummary = async () => {
   }
 };
 
-export const getEducation = async () => {
-  let url: string = `${API_ROUTE}/education`;
+export const getExperience = async (urlPath: string) => {
+  let url: string = urlPath;
 
   try {
     const response = await fetch(url)
@@ -60,29 +78,8 @@ export const getEducation = async () => {
   }
 };
 
-export const getExperience = async () => {
-  let url: string = `${API_ROUTE}/experience`;
-
-  try {
-    const response = await fetch(url)
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    console.log('Received data:', data);
-    return data;
-  } catch (error: any) {
-
-    console.error('Error:', error.message);
-    throw error;
-  }
-};
-
-export const getProjects = async () => {
-  let url: string = `${API_ROUTE}/projects`;
-
+export const getProjects = async (urlPath: string) => {
+  let url: string = urlPath;
   try {
     const response = await fetch(url)
 
