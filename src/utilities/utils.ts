@@ -1,4 +1,4 @@
-const API_ROUTE = 'http://localhost:8000/'
+const API_ROUTE = process.env.BE_APP_ROOT;
 
 export const getInfo = async () => {
   let url: string = `${API_ROUTE}/info`;

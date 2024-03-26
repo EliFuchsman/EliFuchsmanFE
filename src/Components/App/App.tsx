@@ -4,7 +4,6 @@ import Button from '../Button/Button';
 import RedLine from '../Redline/Redline';
 import Link from '../Link/Link';
 import Page from '../pages/Page';
-import { getExperience } from '../../utilities/utils';
 
 function App() {
   const [showGif, setShowGif] = useState(true);
