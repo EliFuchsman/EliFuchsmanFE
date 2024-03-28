@@ -12,9 +12,10 @@ interface PageProps {
   apiType: 'summary' | 'info' | 'education' | 'projects' | 'experience';
   onReturn?: () => void;
   urlPath: string;
+  apiKey: string;
 }
 
-const Page: React.FC<PageProps> = ({ apiType, onReturn, urlPath }) => {
+const Page: React.FC<PageProps> = ({ apiType, onReturn, urlPath, apiKey }) => {
   const [apiData, setApiData] = useState<any>(null);
 
   useEffect(() => {
@@ -23,19 +24,19 @@ const Page: React.FC<PageProps> = ({ apiType, onReturn, urlPath }) => {
         let data;
         switch (apiType) {
           case 'summary':
-            data = await getSummary(`${urlPath}/summary`);
+            data = await getSummary(`${urlPath}/summary`, apiKey);
             break;
           case 'info':
-            data = await getInfo(`${urlPath}/info`);
+            data = await getInfo(`${urlPath}/info`, apiKey);
             break;
           case 'education':
-            data = await getEducation(`${urlPath}/education`);
+            data = await getEducation(`${urlPath}/education`, apiKey);
             break;
           case 'projects':
-            data = await getProjects(`${urlPath}/projects`);
+            data = await getProjects(`${urlPath}/projects`, apiKey);
             break;
           case 'experience':
-            data = await getExperience(`${urlPath}/experience`);
+            data = await getExperience(`${urlPath}/experience`, apiKey);
             break;
           default:
             throw new Error('Invalid API type');
@@ -47,7 +48,7 @@ const Page: React.FC<PageProps> = ({ apiType, onReturn, urlPath }) => {
     };
 
     fetchData();
-  }, [apiType, urlPath]);
+  }, [apiType, urlPath, apiKey]);
 
   const renderContent = () => {
     if (!apiData) {

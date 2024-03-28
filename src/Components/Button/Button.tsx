@@ -4,19 +4,24 @@ interface Props {
   variation: string;
   link?: string;
   buttonText: string;
+  apiKey?: string;
 }
 
 const Button = (props: Props) => {
-  const { variation, link, buttonText } = props;
+  const { variation, link, buttonText, apiKey } = props;
 
   const handleClick = async () => {
     if (link && (variation === "github" || variation === "linkedin")) {
       window.open(link, '_blank');
     }
 
-    if (link && variation === "resume") {
+    if (apiKey && link && variation === "resume") {
       try {
-        const response = await fetch(link);
+        const response = await fetch(link, {
+          headers: {
+            'API-Key': apiKey
+          }
+        });
 
         if (!response.ok) {
           throw new Error('Failed to fetch resume');

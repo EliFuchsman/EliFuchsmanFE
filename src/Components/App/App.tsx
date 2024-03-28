@@ -6,6 +6,8 @@ import Link from '../Link/Link';
 import Page from '../pages/Page';
 
 const rootUrl = process.env.REACT_APP_BE_APP_ROOT;
+const apiKey = process.env.REACT_APP_API_KEY;
+
 function App() {
   const [showGif, setShowGif] = useState(true);
   const [gifOpacity, setGifOpacity] = useState(1);
@@ -84,13 +86,13 @@ function App() {
               <Link linkText="Projects" handleClick={() => setApiType('projects')} />
             </div>
             <RedLine />
-            {apiType && rootUrl && <Page apiType={apiType} onReturn={handleReturn} urlPath={rootUrl} />}
+            {apiKey && apiType && rootUrl && <Page apiType={apiType} onReturn={handleReturn} urlPath={rootUrl} apiKey={apiKey} />}
 
             <h1 style={welcomeTextStyle}>Welcome to Eli Fuchsman's Portfolio</h1>
             <div style={buttonContainerStyle}>
               <Button variation="linkedin" buttonText="Visit LinkedIn" link="https://www.linkedin.com/in/elifuchsman/" />
               <Button variation="github" buttonText="Visit GitHub" link="https://www.github.com/efuchsman/" />
-              <Button variation="resume" buttonText="Download Resume" link={`${rootUrl}/resume`} />
+              <Button variation="resume" buttonText="Download Resume" link={`${rootUrl}/resume`} apiKey={apiKey} />
             </div>
             <p></p>
           </div>

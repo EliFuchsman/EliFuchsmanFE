@@ -19,8 +19,6 @@ interface ProjectProps {
 }
 
 const Project: React.FC<ProjectProps> = ({ apiData }) => {
-  console.log('apiData:', apiData);
-
   const formatLearningGoals = (goals: string) => {
     const goalsArray = goals.split('•');
 

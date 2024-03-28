@@ -21,8 +21,6 @@ interface EducationProps {
 }
 
 const Education: React.FC<EducationProps> = ({ apiData }) => {
-  console.log('apiData:', apiData);
-
   if (!apiData.History || apiData.History.length === 0) {
     return <div>No education data available</div>;
   }
