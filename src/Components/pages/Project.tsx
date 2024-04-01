@@ -40,7 +40,11 @@ const Project: React.FC<ProjectProps> = ({ apiData }) => {
             <p>
               <strong>Repository:</strong> <a href={project.repository} target="_blank" rel="noopener noreferrer">{project.repository}</a>
             </p>
-            <img src={project.image} alt={project.production_name} style={{ width: '450px', height: '300px' }} />
+            <img
+              src={project.image}
+              alt={project.production_name}
+              style={{ width: '100%', maxWidth: '450px', height: 'auto' }}
+            />
             <p>
               <strong>Description:</strong> {project.description}
             </p>
