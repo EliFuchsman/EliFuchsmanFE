@@ -43,23 +43,28 @@ function App() {
 
   const buttonContainerStyle: React.CSSProperties = {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginTop: '30px',
-    width: '60%',
+    maxWidth: '90%',
+    width: '100%',
+    gap: '20px',
   };
 
   const welcomeTextStyle: React.CSSProperties = {
     opacity: textOpacity,
     transition: 'opacity 2s ease',
     color: '#fff',
+    textAlign: 'center',
+    marginBottom: '30px',
   };
 
   const linkContainerStyle: React.CSSProperties = {
     display: 'flex',
-    justifyContent: 'space-between',
-    marginTop: '30px',
-    width: '60%',
-  }
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    width: '100%',
+    marginBottom: '20px',
+  };
 
   const handleReturn = () => {
     setApiType(null);
