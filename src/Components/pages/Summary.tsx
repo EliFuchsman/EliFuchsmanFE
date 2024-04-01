@@ -1,4 +1,3 @@
-// Summary.tsx
 import React, { useEffect, useState } from 'react';
 
 interface SummaryProps {
@@ -16,15 +15,9 @@ const Summary: React.FC<SummaryProps> = ({ apiData }) => {
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-      {paragraphs.length > 0 ? (
-        <div>
-          {paragraphs.map((paragraph: string, index: number) => (
-            <p key={index}>{paragraph}</p>
-          ))}
-        </div>
-      ) : (
-        <p>Loading data...</p>
-      )}
+      {paragraphs.map((paragraph: string, index: number) => (
+        <p key={index} style={{ marginBottom: index !== paragraphs.length - 1 ? '1em' : 0, textAlign: 'left' }}>{paragraph}</p>
+      ))}
     </div>
   );
 };

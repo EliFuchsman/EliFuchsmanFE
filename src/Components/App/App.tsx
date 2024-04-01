@@ -10,57 +10,40 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
 function App() {
   const [showGif, setShowGif] = useState(true);
-  const [gifOpacity, setGifOpacity] = useState(1);
+  const [gifFadeOut, setGifFadeOut] = useState(false);
   const [showWelcomeText, setShowWelcomeText] = useState(false);
-  const [textOpacity, setTextOpacity] = useState(0);
   const [apiType, setApiType] = useState<'info' | 'summary' | 'education' | 'projects' | 'experience' | null>(null);
 
 
   useEffect(() => {
     const gifTimeoutId = setTimeout(() => {
-      setGifOpacity(0);
-    }, 4000);
+      setGifFadeOut(true);
+    }, 2000);
 
     const welcomeTextTimeoutId = setTimeout(() => {
       setShowGif(false);
-      setTextOpacity(1);
       setShowWelcomeText(true);
-    }, 6000);
+    }, 4000);
+
     return () => {
       clearTimeout(gifTimeoutId);
       clearTimeout(welcomeTextTimeoutId);
-    }
+    };
   }, []);
-
-  const headerStyle = {
-    backgroundColor: showGif ? '#000' : '#282c34',
-  };
-
-  const gifStyle: React.CSSProperties = {
-    opacity: gifOpacity,
-    transition: 'opacity 2s ease',
-  };
 
   const buttonContainerStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '30px',
-    maxWidth: '90%',
+    maxWidth: '80%',
     width: '100%',
     gap: '20px',
-  };
-
-  const welcomeTextStyle: React.CSSProperties = {
-    opacity: textOpacity,
-    transition: 'opacity 2s ease',
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: '30px',
+    margin: 'auto',
   };
 
   const linkContainerStyle: React.CSSProperties = {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     flexWrap: 'wrap',
     width: '100%',
     marginBottom: '20px',
@@ -71,18 +54,18 @@ function App() {
   };
 
   return (
-    <div className="App" style={headerStyle}>
-      <header className="App-header">
+    <div className="App">
+      <header className={`App-header ${showGif ? 'loading' : ''}`}>
         {showGif && (
           <img
             src="https://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-10.gif"
-            className="Loading-gif"
+            className={`App-gif ${gifFadeOut ? 'hide' : ''}`}
             alt="gif"
-            style={gifStyle}
           />
         )}
         {showWelcomeText && (
           <div>
+            <RedLine />
             <div style={linkContainerStyle}>
               <Link linkText="Info" handleClick={() => setApiType('info')} />
               <Link linkText="Summary" handleClick={() => setApiType('summary')} />
@@ -90,10 +73,9 @@ function App() {
               <Link linkText="Experience" handleClick={() => setApiType('experience')} />
               <Link linkText="Projects" handleClick={() => setApiType('projects')} />
             </div>
-            <RedLine />
-            {apiKey && apiType && rootUrl && <Page apiType={apiType} onReturn={handleReturn} urlPath={rootUrl} apiKey={apiKey} />}
 
-            <h1 style={welcomeTextStyle}>Welcome to Eli Fuchsman's Portfolio</h1>
+            {apiKey && apiType && rootUrl && <Page apiType={apiType} onReturn={handleReturn} urlPath={rootUrl} apiKey={apiKey} />}
+            <h1 className="welcome-text">Welcome to Eli Fuchsman's Portfolio</h1>
             <div style={buttonContainerStyle}>
               <Button variation="linkedin" buttonText="Visit LinkedIn" link="https://www.linkedin.com/in/elifuchsman/" />
               <Button variation="github" buttonText="Visit GitHub" link="https://www.github.com/efuchsman/" />

@@ -52,7 +52,7 @@ const Page: React.FC<PageProps> = ({ apiType, onReturn, urlPath, apiKey }) => {
 
   const renderContent = () => {
     if (!apiData) {
-      return <p>Loading data...</p>;
+      return <p></p>;
     }
 
     switch (apiType) {

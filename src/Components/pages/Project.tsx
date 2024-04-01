@@ -35,8 +35,14 @@ const Project: React.FC<ProjectProps> = ({ apiData }) => {
         renderItem={(project: ProjectData, index: number) => (
           <div key={index}>
             <h3>{project.production_name}</h3>
-            <img src={project.image} alt={project.production_name} style={{ maxWidth: '100%', height: 'auto' }} />
-            <p style={{ maxWidth: '100%', wordWrap: 'break-word' }}>
+            <div style={{ maxWidth: '600px', maxHeight: '400px', overflow: 'hidden', margin: '0 auto' }}>
+              <img
+                src={project.image}
+                alt={project.production_name}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <p style={{ wordWrap: 'break-word' }}>
               <strong>Repository:</strong>{' '}
               <a href={project.repository} target="_blank" rel="noopener noreferrer" style={{ maxWidth: '100%', overflow: 'hidden', display: 'block' }}>
                 {project.repository}
@@ -64,6 +70,7 @@ const Project: React.FC<ProjectProps> = ({ apiData }) => {
           </div>
         )}
       />
+
     </div>
   );
 };
