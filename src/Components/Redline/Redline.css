@@ -8,6 +8,10 @@
   top: 0;
   left: 0;
   animation: expandAndHold 2s ease-in-out forwards;
+
+  @media (max-width: 768px) {
+    visibility: hidden;
+  }
 }
 
 .red-line:after {
@@ -18,9 +22,17 @@
   background-color: red;
   position: absolute;
   top: 0;
-  left: 80%;
+  left: 90%;
   animation: expandVertical 1s ease-in-out forwards;
   animation-delay: 2s;
+
+  @media (min-width: 789px) and (max-width: 1440px) {
+    left: 95%;
+  }
+
+  @media (max-width: 768px) {
+    visibility: hidden;
+  }
 }
 
 @keyframes expandAndHold {
